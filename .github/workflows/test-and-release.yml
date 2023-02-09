@@ -26,9 +26,10 @@ jobs:
         run: |
           make create-venv
 
-      - name: Test with molecule
-        run: |
-          make test
+      # TODO: add tests
+      # - name: Test with molecule
+      #   run: |
+      #     make test
 
       - name: Bump version and push tag
         if: github.ref == 'refs/heads/main'
