@@ -3,8 +3,8 @@ Ansible role for Unifi on Raspbian
 
 This role will install Ubiquiti's Unifi software on Raspberry Pi/Raspbian.
 
-[![Molecule Test](https://github.com/tgagor/ansible-role-spotify/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/tgagor/ansible-role-spotify/actions/workflows/test-and-release.yml)
-[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-tgagor-spofify.svg)](https://galaxy.ansible.com/tgagor/spotify)
+[![Molecule Test](https://github.com/tgagor/ansible-role-rpi_unifi/actions/workflows/test-and-release.yml/badge.svg)](https://github.com/tgagor/ansible-role-rpi_unifi/actions/workflows/test-and-release.yml)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-tgagor-spofify.svg)](https://galaxy.ansible.com/tgagor/rpi_unifi)
 
 ## Supported systems
 
