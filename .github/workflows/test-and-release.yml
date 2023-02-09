@@ -4,12 +4,12 @@ name: test and release
 on:
   push:
     branches:
-      - master
+      - main
     tags:
       - '*.*.*'
   pull_request:
     branches:
-      - master
+      - main
 
 jobs:
   build:
@@ -31,14 +31,14 @@ jobs:
           make test
 
       - name: Bump version and push tag
-        if: github.ref == 'refs/heads/master'
+        if: github.ref == 'refs/heads/main'
         id: tag_version
         uses: mathieudutour/github-tag-action@v5.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create normal GitHub release
-        if: github.ref == 'refs/heads/master' && github.event_name != 'schedule'
+        if: github.ref == 'refs/heads/main' && github.event_name != 'schedule'
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
