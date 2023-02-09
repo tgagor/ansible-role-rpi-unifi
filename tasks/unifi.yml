@@ -1,21 +1,21 @@
 ---
 
-- name: unifi | fetch repo key
+- name: Unifi | fetch repo key
   ansible.builtin.get_url:
     url: https://dl.ui.com/unifi/unifi-repo.gpg
     dest: /etc/apt/trusted.gpg.d/ubiquiti-archive-keyring.asc
 
-- name: unifi | dearmor key
-  shell: cat /etc/apt/trusted.gpg.d/ubiquiti-archive-keyring.asc | gpg --dearmor > /etc/apt/keyrings/ubiquiti-archive-keyring.gpg
+- name: Unifi | dearmor key
+  ansible.builtin.shell: set -o pipefail && cat /etc/apt/trusted.gpg.d/ubiquiti-archive-keyring.asc | gpg --dearmor > /etc/apt/keyrings/ubiquiti-archive-keyring.gpg
   args:
     creates: /etc/apt/keyrings/ubiquiti-archive-keyring.gpg
 
-- name: unifi | add repo
+- name: Unifi | add repo
   ansible.builtin.apt_repository:
     repo: "deb [signed-by=/etc/apt/keyrings/ubiquiti-archive-keyring.gpg] https://www.ui.com/downloads/unifi/debian stable ubiquiti"
     state: present
     update_cache: yes
 
-- name: unifi | install Unifi
+- name: Unifi | install Unifi
   ansible.builtin.apt:
     name: unifi

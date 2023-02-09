@@ -1,19 +1,22 @@
 ---
 
-- name: prerequisities
-  include: prerequisities.yml
+- name: Prerequisities
+  ansible.builtin.include_tasks:
+    file: prerequisities.yml
   tags:
     - prerequisities
     - unifi
 
-- name: add Mongo repo on Bullseye
-  include: mongodb.yml
+- name: Add Mongo repo on Bullseye
+  ansible.builtin.include_tasks:
+    file: mongodb.yml
   when: ansible_distribution_release == "bullseye"
   tags:
     - mongo
     - unifi
 
-- name: install Unifi
-  include: unifi.yml
+- name: Install Unifi
+  ansible.builtin.include_tasks:
+    file: unifi.yml
   tags:
     - unifi

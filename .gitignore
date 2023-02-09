@@ -1,0 +1,6 @@
+*.*~
+*.retry
+.molecule
+.venv
+.cache
+__pycache__
