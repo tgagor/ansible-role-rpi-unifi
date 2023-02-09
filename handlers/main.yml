@@ -1,0 +1,5 @@
+---
+- name: restart rng-tools
+  ansible.builtin.systemd:
+    name: rng-tools
+    state: restarted

@@ -1,0 +1,19 @@
+---
+
+- name: prerequisities
+  include: prerequisities.yml
+  tags:
+    - prerequisities
+    - unifi
+
+- name: add Mongo repo on Bullseye
+  include: mongodb.yml
+  when: ansible_distribution_release == "bullseye"
+  tags:
+    - mongo
+    - unifi
+
+- name: install Unifi
+  include: unifi.yml
+  tags:
+    - unifi

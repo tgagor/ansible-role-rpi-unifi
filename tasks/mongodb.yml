@@ -1,0 +1,23 @@
+---
+
+- name: mongo | configure package pinning
+  ansible.builtin.copy:
+    src: etc/apt/preferences.d/99stretch-mongodb.pref
+    dest: /etc/apt/preferences.d/99stretch-mongodb.pref
+    mode: 0644
+
+- name: mongo | fetch repo key
+  ansible.builtin.get_url:
+    url: https://archive.raspbian.org/raspbian.public.key
+    dest: /etc/apt/trusted.gpg.d/raspbian-archive-keyring.asc
+
+- name: mongo | dearmor key
+  shell: cat /etc/apt/trusted.gpg.d/raspbian-archive-keyring.asc | gpg --dearmor > /etc/apt/keyrings/raspbian-archive-keyring.gpg
+  args:
+    creates: /etc/apt/keyrings/raspbian-archive-keyring.gpg
+
+- name: mongo | add repo
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/etc/apt/keyrings/raspbian-archive-keyring.gpg] http://archive.raspbian.org/raspbian stretch main"
+    state: present
+    update_cache: yes

@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  role_name: rpi_unifi
+  namespace: tgagor
+  author: Tomasz G.
+  description: installs Ubiqiti's Unifi software on Raspbian Linux
+  license: GPLv3
+
+  min_ansible_version: 1.2
+
+  # If this a Container Enabled role, provide the minimum Ansible Container version.
+  # min_ansible_container_version:
+
+  platforms:
+    - name: Debian
+      versions:
+        - stretch   # 9
+        - buster    # 10
+        - bullseye  # 11
+
+  galaxy_tags:
+    - tgagor
+    - unifi
+    - raspberrypi

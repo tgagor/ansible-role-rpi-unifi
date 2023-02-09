@@ -1,0 +1,34 @@
+---
+
+- name: prerequisities | fail if system is 64bit
+  fail:
+    msg: Unifi can only be installed on 32bit Raspbian, 64bit is not supported!
+  when: ansible_architecture != 'armv7l'
+
+
+- name: prerequisities | install required packages
+  ansible.builtin.apt:
+    name:
+      - rng-tools
+      - gpg
+      - openjdk-11-jre-headless
+
+- name: prerequisities | start rng-tools deamon
+  ansible.builtin.systemd:
+    name: rng-tools
+    state: started
+    enabled: yes
+
+- name: prerequisities | use hardware random number generator
+  ansible.builtin.lineinfile:
+    dest: /etc/default/rng-tools-debian
+    regexp: ^#HRNGDEVICE=/dev/hwrng
+    line: HRNGDEVICE=/dev/hwrng
+  notify:
+    - restart rng-tools
+
+- name: prerequisities | create keyrings dir
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: 0755
